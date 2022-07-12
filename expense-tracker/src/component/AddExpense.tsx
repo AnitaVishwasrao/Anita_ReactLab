@@ -227,7 +227,7 @@ class AddExpense extends Component<Props, State> {
                       isInvalid={payeeErrs.length !== 0}
                       className="mb-3"
                     >
-                      {PAYEE.map((payee, index) => (
+                      {PAYEE?.map((payee, index) => (
                         <option value={payee.value} key={index}>
                           {payee.text}
                         </option>

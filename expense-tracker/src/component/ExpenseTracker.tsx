@@ -33,10 +33,14 @@ class ExpenseTracker extends Component<Props, State> {
     showExpenses: false,
   };
 
+  getFixedNumber = (iNumber: number) => {
+    return parseFloat(iNumber.toFixed(2));
+  };
+
   getTotalExpense = (expenses: IExpense[]) => {
     let totalExpense = 0;
     totalExpense = expenses?.reduce((total, obj) => obj.price + total, 0);
-    return totalExpense;
+    return this.getFixedNumber(totalExpense);
   };
 
   getExpenseMadeByPayee = (expenses: IExpense[]) => {
@@ -51,7 +55,7 @@ class ExpenseTracker extends Component<Props, State> {
       let expense = expenses
         ?.filter((expense) => expense.payee === payee)
         .reduce((total, obj) => obj.price + total, 0);
-
+      expense = this.getFixedNumber(expense);
       expensesMadeByPayee.push({ payee: payee, expense: expense as number });
     });
 
@@ -67,26 +71,35 @@ class ExpenseTracker extends Component<Props, State> {
       expense: 0,
     };
 
-    const contributionPerPayee = totalExpense / expensesMadeByPayee.length;
+    //get the total contributions to be made by each payee
+    //(here expensesMadeByPayee.length is considered instead number of payees configured in UI
+    //i.e it is assumed that the contribution is started only when a payment is made)
+    const contributionPerPayee = this.getFixedNumber(
+      totalExpense / expensesMadeByPayee.length
+    );
 
+    //get all the payees whose contribution is less than the contribution
     const payeesWithMinContribution = expensesMadeByPayee.filter(
       (expense: any) => expense.expense < contributionPerPayee
     );
 
+    //get the payee who has paid highest amount
     const payeeWithMaxContribution = expensesMadeByPayee.filter(
       (expense: any) => expense.expense > contributionPerPayee
     );
 
-    const remainingAmount =
-      contributionPerPayee -
-      payeesWithMinContribution.reduce(
-        (total: any, obj: any) => obj.expense + total,
-        0
-      );
-
-    if (remainingAmount > 0 && payeesWithMinContribution.length > 0) {
-      remainingPayment.payee = payeeWithMaxContribution[0].payee;
-      remainingPayment.expense = remainingAmount;
+    //set remaining amount to be received by maximum payer and maximum payer's name
+    if (payeesWithMinContribution.length > 0) {
+      const remainingAmount =
+        payeeWithMaxContribution[0].expense -
+        payeesWithMinContribution.reduce(
+          (total: any, obj: any) => obj.expense + total,
+          0
+        );
+      if (remainingAmount > 0) {
+        remainingPayment.payee = payeeWithMaxContribution[0].payee;
+        remainingPayment.expense = this.getFixedNumber(remainingAmount);
+      }
     }
     return remainingPayment;
   };
@@ -112,18 +125,12 @@ class ExpenseTracker extends Component<Props, State> {
     try {
       const data = await getExpenses();
       if (data.length > 0) {
-        //console.log("API Response - ", data);
         const totalExpense = this.getTotalExpense(data);
-        //console.log("Total Expense - ", totalExpense);
         const expenseMadeByPayee = this.getExpenseMadeByPayee(data);
-        //console.log("Expense Made By Payee - ", totalExpense);
-
         const remainingAmountTobePaid = this.getRemainingAmountTobePaid(
           totalExpense,
           expenseMadeByPayee
         );
-
-        //console.log("Remaining amount to be paid - ", remainingAmountTobePaid);
 
         this.setState({
           expenses: data,
@@ -271,7 +278,7 @@ class ExpenseTracker extends Component<Props, State> {
                           )
                         )}
                         {
-                          <tr className="bg-danger">
+                          <tr style={{ backgroundColor: "#FF5E5E" }}>
                             <td>{`Pay ${expenseSummary.remainingAmountToBePaid?.payee}`}</td>
                             <td>
                               {expenseSummary?.remainingAmountToBePaid.expense}

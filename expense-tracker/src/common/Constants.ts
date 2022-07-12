@@ -4,15 +4,11 @@ export const PAYEE = [
     value: "",
   },
   {
-    text: "Anita",
-    value: "Anita",
+    text: "Person A",
+    value: "Person A",
   },
   {
-    text: "Vinita",
-    value: "Vinita",
-  },
-  {
-    text: "Akshata",
-    value: "Akshata",
+    text: "Person B",
+    value: "Person B",
   },
 ];

@@ -1,20 +1,18 @@
 {
-  "expenses": [],
-  "posts": [
+  "expenses": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "date": "2022-07-01",
+      "product": "qqq",
+      "price": 100.5,
+      "payee": "Person B",
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "date": "2022-07-02",
+      "product": "aaaaaaaaa",
+      "price": 50.5,
+      "payee": "Person A",
+      "id": 2
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
