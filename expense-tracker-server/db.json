@@ -1,18 +1,3 @@
 {
-  "expenses": [
-    {
-      "date": "2022-07-01",
-      "product": "qqq",
-      "price": 100.5,
-      "payee": "Person B",
-      "id": 1
-    },
-    {
-      "date": "2022-07-02",
-      "product": "aaaaaaaaa",
-      "price": 50.5,
-      "payee": "Person A",
-      "id": 2
-    }
-  ]
+  "expenses": []
 }
