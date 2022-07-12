@@ -1,0 +1,51 @@
+.container .col-12 #action-btn-group {
+  text-align: right;
+}
+
+.form-element {
+  border: 1px solid saddlebrown;
+}
+
+#form-wrapper {
+  width: 50vw;
+}
+
+.header {
+  border: 1px solid black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container .col-12 .notes span {
+  display: block;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.container .col-12 #action-btn-group .btn {
+  background-color: #dce995;
+  border-color: #dce995;
+}
+
+.custom-bg-color {
+  background-color: #dce995;
+}
+
+input[type="number"],
+input[type="date"],
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 20vw;
+  outline: none;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="text"]:focus,
+#payee:focus {
+  box-shadow: none;
+}
+
+.notes {
+  font-weight: 600;
+}

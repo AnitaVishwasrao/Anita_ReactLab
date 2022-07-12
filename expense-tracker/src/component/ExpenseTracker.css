@@ -1,0 +1,23 @@
+.container #expenses-wrapper .btn {
+  width: 100%;
+  background-color: #7fff00;
+  border-color: #7fff00;
+  color: black;
+}
+
+h1 {
+  color: #7fff00;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0.25em;
+}
+
+th,
+td {
+  border-radius: 4px;
+}
