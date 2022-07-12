@@ -1,7 +1,7 @@
 {
   "name": "expense-tracker-server",
   "version": "1.0.0",
-  "description": "Expense Tracket JSON Server",
+  "description": "Expense Tracker JSON Server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
